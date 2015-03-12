@@ -4,7 +4,7 @@
 Plugin Name: CC Canadian Mortgage Calculator
 Plugin URI: http://mortgage.calculatorscanada.ca/widgets/
 Description: Simple Canadian Mortgage Calculator
-Version: 1.0.0
+Version: 1.1.0
 Author: Calculators Canada
 Author URI: http://calculatorscanada.ca/
 License: GPL2
@@ -153,6 +153,19 @@ function cc_mortgage_canada_admin( $hook_suffix ) {
 }
 
 add_action( 'admin_enqueue_scripts', 'cc_mortgage_canada_admin' );
+
+
+function cc_mortgage_canada_shortcode($atts, $content=null)
+{
+	$atts = shortcode_atts (array('title'=>'Mortgage calculator','currency_symbol'=>'$','dev_credit'=>'1', 'bg_color'=>'#ffffff', 'border_color'=>'#cccccc', 'text_color'=>'#000000'), $atts);
+    ob_start();
+    load_cc_mortgage_canada_calc('cc_mortgage_canada_shortcode', $atts['title'], $atts['currency_symbol'], $atts['dev_credit'], $atts['bg_color'], $atts['border_color'], $atts['text_color']);
+    $widget = ob_get_contents();
+    ob_end_clean();
+    return trim($widget);
+}
+
+add_shortcode('cc-mortgage-canada','cc_mortgage_canada_shortcode');
 
 
 ?>
