@@ -4,7 +4,7 @@
 Plugin Name: CC Canadian Mortgage Calculator
 Plugin URI: http://mortgage.calculatorscanada.ca/widgets/
 Description: Simple Canadian Mortgage Calculator
-Version: 1.1.0
+Version: 2.0.0
 Author: Calculators Canada
 Author URI: http://calculatorscanada.ca/
 License: GPL2
@@ -50,7 +50,7 @@ class cc_mortgage_canada extends WP_Widget {
         $defaults = array(
             'title' => __('Canadian Mortgage Calculator', 'cctextdomain'),
             'bg_color' => '#ffffff',
-            'border_color' => '#000000',
+            'border_color' => '#cccccc',
             'text_color' => '#000000'
         );
 
@@ -111,7 +111,7 @@ class cc_mortgage_canada extends WP_Widget {
 
         //$instance['currency_symbol'] = $new_instance['currency_symbol'];
         $instance['bg_color'] = ( preg_match($hex_color_pattern, $new_instance['bg_color']) ) ? $new_instance['bg_color'] : "#ffffff";
-        $instance['border_color'] = ( preg_match($hex_color_pattern, $new_instance['border_color']) ) ? $new_instance['border_color'] : "#000000";
+        $instance['border_color'] = ( preg_match($hex_color_pattern, $new_instance['border_color']) ) ? $new_instance['border_color'] : "#cccccc";
         $instance['text_color'] = ( preg_match($hex_color_pattern, $new_instance['text_color']) ) ? $new_instance['text_color'] : "#000000";
         $instance['allow_cc_urls'] = ($new_instance['allow_cc_urls'] == "on") ? 1 : 0;
 
@@ -125,8 +125,8 @@ class cc_mortgage_canada extends WP_Widget {
         extract($instance);
 
 		echo $args['before_widget'];
-		if ( $allow_cc_urls && !empty($title))
-			 $title = '<a href="http://mortgage.calculatorscanada.ca" target="_blank" style="text-decoration:none">' . $title . '</a>';		
+		//if ( $allow_cc_urls && !empty($title))
+		//	 $title = '<a href="http://mortgage.calculatorscanada.ca" target="_blank" style="text-decoration:none">' . $title . '</a>';		
 		load_cc_mortgage_canada_calc($this->id, $title, $this->currency_symbol, $allow_cc_urls, $bg_color, $border_color, $text_color);
 		echo $args['after_widget'];
 	}

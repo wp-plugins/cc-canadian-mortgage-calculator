@@ -4,7 +4,12 @@ var $J = jQuery.noConflict();
 $J( document ).ready(function() {
 	// runtime events
 	
-	$J(".ca-mortgage").keydown(function(event) {
+	$J(".ca-purchase-price").keydown(function(event) {
+		if(!(isIntegerKey(event))) event.preventDefault();
+		
+	});	
+
+	$J(".ca-down-payment").keydown(function(event) {
 		if(!(isIntegerKey(event))) event.preventDefault();
 		
 	});	
@@ -19,12 +24,18 @@ $J( document ).ready(function() {
 		
 	});	
 	
-	$J(".ca-mortgage").keyup(function( ) {
-        calculate_canadian_mortgage(get_id(this.id,"mortgage"));
+	$J(".ca-purchase-price").keyup(function( ) {
+        calculate_canadian_mortgage(get_id(this.id,"purchase-price"));
 	});
+
+	$J(".ca-down-payment").keyup(function( ) {
+        calculate_canadian_mortgage(get_id(this.id,"down-payment"));
+	});
+
 	$J(".ca-mortgage-term").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"mortgage-term"));
 	});
+
 	$J(".ca-mortgage-rate").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"mortgage-rate"));
 	});
@@ -38,13 +49,14 @@ function get_id(long_id,fieldname)
 
 function calculate_canadian_mortgage(id)
 {
-    var mortgage_id = '#' + id + '-' + 'mortgage';
-	var mortgage = $J(mortgage_id).val(),
+	var price = $J('#' + id + '-' + 'purchase-price').val(),
+        payment = $J('#' + id + '-' + 'down-payment').val(),
 		term = $J('#' + id + '-' + 'mortgage-term').val(),
 		rate = $J('#' + id + '-' + 'mortgage-rate').val();
 	
 	// if no data entered
-	if (isNaN(mortgage) || mortgage == "") return;
+	if (isNaN(price) || price == "") return;
+    if (isNaN(payment) || payment == "") return;
 	if (isNaN(term) || term == "") return;
 	if (isNaN(rate) || rate == "") return;
 	
@@ -57,15 +69,18 @@ function calculate_canadian_mortgage(id)
 
 	monthlyInterestFactor = Math.pow(1 + semiAnnualRate, 1/6) - 1;
 
-	monthlyPayment = round2TwoDecimals((mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber)));		
-	//monthlyPayment = round2TwoDecimals((monthlyRate * mortgage * Math.pow(1 + monthlyRate, paymentsNumber)) / (Math.pow(1 + monthlyRate, paymentsNumber) - 1));
+	mortgage = price - payment;
 
-	totalPayment = round2TwoDecimals(monthlyPayment * paymentsNumber);
-	interestPaid = round2TwoDecimals(totalPayment - mortgage);
+    monthlyPayment = (mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber));		
+
+    totalPayment = monthlyPayment * paymentsNumber;
+
+	interestPaid = totalPayment - mortgage;
 	
-	$J('#' + id + '-' + 'monthlyPayment').html(monthlyPayment);
-	$J('#' + id + '-' + 'totalPayment').html(totalPayment);
-	$J('#' + id + '-' + 'interestPaid').html(interestPaid);
+    $J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    $J('#' + id + '-' + 'monthlyPayment').html(monthlyPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    $J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+	$J('#' + id + '-' + 'interestPaid').html(interestPaid.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
    
 };
 
@@ -114,11 +129,5 @@ function radioValue(element)
 			}
 			return returnValue;	
 		 };	  	
-function round2TwoDecimals(number)
-		 {
- 		    return Math.round(number*100)/100						 
-		 };	
- 
-
 
 

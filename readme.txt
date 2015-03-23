@@ -1,10 +1,10 @@
 === CC Canadian Mortgage Calculator ===
 Contributors: CalculatorsCanada.ca
 Donate link: http://mortgage.calculatorscanada.ca/
-Tags: Canada, Canadian mortgage, loan, mortgage, mortgage calculator, interest, calculator, sidebar, widget, plugin, financial
+Tags: Canada, Canadian mortgage, loan, mortgage, mortgage calculator, interest, calculator, sidebar, widget, plugin, financial, shortcode
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,7 +28,6 @@ OR
 
  Short code parameters are:
   * title - set calculator's title (default - "Mortgage calculator")
-  * currency_symbol - set currency symbol (default - "$") 
   * dev_credit - show developer's credit (default - "1") 
   * bg_color - set background color (default - "#ffffff")
   * border_color - set border color (default - "#cccccc")
@@ -55,8 +54,15 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 
 1. Widget settings in appearance panel
 2. Widget example on the sidebar
+3. Shortcode usage example in post
+4. Widget example in WP post/page
 
 == Changelog ==
+
+= 2.0.0
+* Added commas for thousands 
+* Input fields changed: now you can enter Purchace price and Down payment
+* Mortgage amount is calculated automatically accordingly
 
 = 1.1.0 =
 * Supports Shortcode
@@ -65,4 +71,4 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 * Initial release
 
 == Upgrade Notice ==
-* Shortcode support added
+* Input fields changed: now you can enter Purchace price and Down payment
