@@ -58,22 +58,6 @@ function load_cc_mortgage_canada_calc($id, $title, $currency, $show_url = 0, $bg
                 <span id="<?php echo $id; ?>-monthlyPayment" class=""></span>
 			 </div>
         </div>
-        <div class="ccm-rowdiv">
-			 <div class="ccm-leftresultdiv">
-                <label for="<?php echo $id; ?>-totalPayment">Total payment :</label>
-			 </div>
-			 <div class="ccm-rightresultdiv">
-                <span id="<?php echo $id; ?>-totalPayment" class=""></span>
-			 </div>
-        </div>
-        <div class="ccm-rowdiv">
-			 <div class="ccm-leftresultdiv">
-                <label for="<?php echo $id; ?>-interestPaid">Total interest paid :</label>
-			 </div>
-			 <div class="ccm-rightresultdiv">
-                <span id="<?php echo $id; ?>-interestPaid" class=""></span>
-			 </div>
-        </div>
         <?php if ($show_url) { ?>
     		<div class="ccm-rowdiv" >
                 <div class="CCM-WidgetSignature CCM-WidgetSignature-<?php echo $id; ?>">Provided by <a href="http://mortgage.calculatorscanada.ca" target="_blank">CalculatorsCanada.ca</a></div>

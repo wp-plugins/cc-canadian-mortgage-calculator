@@ -75,12 +75,14 @@ function calculate_canadian_mortgage(id)
 
     totalPayment = monthlyPayment * paymentsNumber;
 
-	interestPaid = totalPayment - mortgage;
+    interestPaid = totalPayment - mortgage;
 	
-    $J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
-    $J('#' + id + '-' + 'monthlyPayment').html(monthlyPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
-    $J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
-	$J('#' + id + '-' + 'interestPaid').html(interestPaid.toLocaleString('en-CA', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    //$J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en', { style: 'currency', currency: 'USD', maximumFractionDigits: 0}));
+    $J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en', { style: 'currency', currency: 'USD'}));
+    $J('#' + id + '-' + 'monthlyPayment').html(monthlyPayment.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    //$J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD'}));
+    //$J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+	//$J('#' + id + '-' + 'interestPaid').html(interestPaid.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
    
 };
 
