@@ -4,7 +4,7 @@ Donate link: http://mortgage.calculatorscanada.ca/
 Tags: Canada, Canadian mortgage, loan, mortgage, mortgage calculator, interest, calculator, sidebar, widget, plugin, financial, shortcode
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,9 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 4. Widget example in WP post/page
 
 == Changelog ==
+
+= 2.0.3 =
+* minor issue with source version 
 
 = 2.0.2 =
 * currency sign wasn't shown on some web browsers
