@@ -65,24 +65,21 @@ function calculate_canadian_mortgage(id)
 		paymentsNumber = term * 12,
 		monthlyPayment = 0,
 		totalPayment = 0,
-		interestPaid = 0;
+		interestPaid = 0,
+        currency = $J("#currency").val();
 
 	monthlyInterestFactor = Math.pow(1 + semiAnnualRate, 1/6) - 1;
 
 	mortgage = price - payment;
 
-    monthlyPayment = (mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber));		
+    monthlyPayment = round2TwoDecimals((mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber)));		
 
     totalPayment = monthlyPayment * paymentsNumber;
 
     interestPaid = totalPayment - mortgage;
 	
-    //$J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en', { style: 'currency', currency: 'USD', maximumFractionDigits: 0}));
-    $J('#' + id + '-' + 'mortgage').html(mortgage.toLocaleString('en', { style: 'currency', currency: 'USD'}));
-    $J('#' + id + '-' + 'monthlyPayment').html(monthlyPayment.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
-    //$J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en-CA', { style: 'currency', currency: 'USD'}));
-    //$J('#' + id + '-' + 'totalPayment').html(totalPayment.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
-	//$J('#' + id + '-' + 'interestPaid').html(interestPaid.toLocaleString('en', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    $J('#' + id + '-' + 'mortgage').html(currency + mortgage.toString());
+    $J('#' + id + '-' + 'monthlyPayment').html(currency + monthlyPayment.toString());
    
 };
 
@@ -132,4 +129,8 @@ function radioValue(element)
 			return returnValue;	
 		 };	  	
 
-
+function round2TwoDecimals(number)
+		 {
+ 		    return Math.round(number*100)/100						 
+		 };	
+ 

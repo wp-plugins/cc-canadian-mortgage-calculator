@@ -5,6 +5,7 @@ function load_cc_mortgage_canada_calc($id, $title, $currency, $show_url = 0, $bg
         load_ccmc_custom_colors($id, $bg_color, $border_color, $text_color);
 ?>
 
+<input type="hidden" id="currency" value="$"> 
 <div class="CCM-Widget CCM-Widget-<?php echo $id; ?>">
 	 	<div class="CCM-WidgetTitle CCM-WidgetTitle-<?php echo $id; ?>"><?php echo $title; ?></div>		   
         <div class="ccm-rowdiv">
