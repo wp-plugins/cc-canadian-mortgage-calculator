@@ -1,88 +1,80 @@
-var $J = jQuery.noConflict();
-
-
-$J( document ).ready(function() {
+jQuery(document).ready(function($) {
 	// runtime events
 	
-	$J(".ca-purchase-price").keydown(function(event) {
+	$(".ca-purchase-price").keydown(function(event) {
 		if(!(isIntegerKey(event))) event.preventDefault();
 		
 	});	
 
-	$J(".ca-down-payment").keydown(function(event) {
+	$(".ca-down-payment").keydown(function(event) {
 		if(!(isIntegerKey(event))) event.preventDefault();
 		
 	});	
 
-	$J(".ca-mortgage-term").keydown(function(event) {
+	$(".ca-mortgage-term").keydown(function(event) {
 		if(!(isIntegerKey(event))) event.preventDefault();
 		
 	});	
 
-	$J(".ca-mortgage-rate").keydown(function(event) {
+	$(".ca-mortgage-rate").keydown(function(event) {
         if(!(isDecimalKey(event,this.value))) event.preventDefault();
 		
 	});	
 	
-	$J(".ca-purchase-price").keyup(function( ) {
+	$(".ca-purchase-price").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"purchase-price"));
 	});
 
-	$J(".ca-down-payment").keyup(function( ) {
+	$(".ca-down-payment").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"down-payment"));
 	});
 
-	$J(".ca-mortgage-term").keyup(function( ) {
+	$(".ca-mortgage-term").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"mortgage-term"));
 	});
 
-	$J(".ca-mortgage-rate").keyup(function( ) {
+	$(".ca-mortgage-rate").keyup(function( ) {
         calculate_canadian_mortgage(get_id(this.id,"mortgage-rate"));
 	});
 
-});
+    function get_id(long_id,fieldname)
+    {
+        return long_id.substr(0, long_id.lastIndexOf(fieldname) - 1);
+    };
 
-function get_id(long_id,fieldname)
-{
-    return long_id.substr(0, long_id.lastIndexOf(fieldname) - 1);
-};
-
-function calculate_canadian_mortgage(id)
-{
-	var price = $J('#' + id + '-' + 'purchase-price').val(),
-        payment = $J('#' + id + '-' + 'down-payment').val(),
-		term = $J('#' + id + '-' + 'mortgage-term').val(),
-		rate = $J('#' + id + '-' + 'mortgage-rate').val();
+    function calculate_canadian_mortgage(id)
+    {
+	    var price = $('#' + id + '-' + 'purchase-price').val(),
+            payment = $('#' + id + '-' + 'down-payment').val(),
+		    term = $('#' + id + '-' + 'mortgage-term').val(),
+		    rate = $('#' + id + '-' + 'mortgage-rate').val();
 	
-	// if no data entered
-	if (isNaN(price) || price == "") return;
-    if (isNaN(payment) || payment == "") return;
-	if (isNaN(term) || term == "") return;
-	if (isNaN(rate) || rate == "") return;
+	    // if no data entered
+	    if (isNaN(price) || price == "") return;
+        if (isNaN(payment) || payment == "") return;
+	    if (isNaN(term) || term == "") return;
+	    if (isNaN(rate) || rate == "") return;
 	
 	
-	var semiAnnualRate = (rate/2)/100,
-		paymentsNumber = term * 12,
-		monthlyPayment = 0,
-		totalPayment = 0,
-		interestPaid = 0,
-        currency = $J("#currency").val();
+	    var semiAnnualRate = (rate/2)/100,
+		    paymentsNumber = term * 12,
+		    monthlyPayment = 0,
+		    totalPayment = 0,
+		    interestPaid = 0,
+            currency = $('#' + id + '-' + 'currency').val();
 
-	monthlyInterestFactor = Math.pow(1 + semiAnnualRate, 1/6) - 1;
+	    monthlyInterestFactor = Math.pow(1 + semiAnnualRate, 1/6) - 1;
 
-	mortgage = price - payment;
+	    mortgage = price - payment;
 
-    monthlyPayment = round2TwoDecimals((mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber)));		
+        monthlyPayment = round2TwoDecimals((mortgage * monthlyInterestFactor) / (1 - Math.pow(1 + monthlyInterestFactor, -paymentsNumber)));		
 
-    totalPayment = monthlyPayment * paymentsNumber;
-
-    interestPaid = totalPayment - mortgage;
-	
-    $J('#' + id + '-' + 'mortgage').html(currency + mortgage.toString());
-    $J('#' + id + '-' + 'monthlyPayment').html(currency + monthlyPayment.toString());
+        $('#' + id + '-' + 'mortgage').html(currency + formatNumber(mortgage).toString());
+        $('#' + id + '-' + 'monthlyPayment').html(currency + formatNumber(monthlyPayment).toString());
    
-};
+    };
 
+}); // <-- jQuery END
 
 function isIntegerKey(evt)	  
       {
@@ -134,3 +126,6 @@ function round2TwoDecimals(number)
  		    return Math.round(number*100)/100						 
 		 };	
  
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}

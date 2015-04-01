@@ -3,8 +3,8 @@ Contributors: CalculatorsCanada.ca
 Donate link: http://mortgage.calculatorscanada.ca/
 Tags: Canada, Canadian mortgage, loan, mortgage, mortgage calculator, interest, calculator, sidebar, widget, plugin, financial, shortcode
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 2.0.3
+Tested up to: 4.1.1
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,13 +27,13 @@ OR
  Use [cc-mortgage-canada] short code if you want embed the mortgage calculator into a post instead of adding it as a widget on sidebar.
 
  Short code parameters are:
-  * title - set calculator's title (default - "Mortgage calculator")
-  * dev_credit - show developer's credit (default - "1") 
-  * bg_color - set background color (default - "#ffffff")
-  * border_color - set border color (default - "#cccccc")
-  * text_color - set text color (default - "#000000")
+  * title (optional) - set calculator's title (default - "Mortgage calculator")
+  * dev_credit (optional) - show developer's credit (default - "1") 
+  * bg_color (optional) - set background color (default - "#ffffff")
+  * border_color (optional) - set border color (default - "#cccccc")
+  * text_color (optional) - set text color (default - "#000000")
 
-Example of shortcode usage: [cc-mortgage-canada title="Canadian Morgage Calculator" border_color="#6291c5"]
+Example of shortcode usage: [cc-mortgage-canada title="Canadian Mortgage Calculator" border_color="#6291c5"]
 
 Use [Color Picker](http://www.colorpicker.com/) to get hex code of color you need. 
 
@@ -57,7 +57,11 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 3. Shortcode usage example in post
 4. Widget example in WP post/page
 
-== Changelog ==
+== Changelog ==donat
+
+= 2.0.4 =
+* fixed javascript conflicts
+* fixed issues with commas for thousands
 
 = 2.0.3 =
 * minor issue with source version 
@@ -80,4 +84,4 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 * Initial release
 
 == Upgrade Notice ==
-* currency sign display issues in some browsers
+* fixed javascript conflicts and issues with commas for thousands
