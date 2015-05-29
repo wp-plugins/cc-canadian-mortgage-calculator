@@ -3,7 +3,7 @@ Contributors: CalculatorsCanada.ca
 Donate link: http://mortgage.calculatorscanada.ca/
 Tags: Canada, Canadian mortgage, loan, mortgage, mortgage calculator, interest, calculator, sidebar, widget, plugin, financial, shortcode
 Requires at least: 3.0
-Tested up to: 4.1.1
+Tested up to: 4.2.2
 Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -74,7 +74,7 @@ Please [contact us](http://calculatorscanada.ca/contact) if you have further que
 
 = 2.0.0 =
 * Added commas for thousands 
-* Input fields changed: now you can enter Purchace price and Down payment
+* Input fields changed: now you can enter Purchase price and Down payment
 * Mortgage amount is calculated automatically accordingly
 
 = 1.1.0 =
